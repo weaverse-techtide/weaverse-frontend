@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -11,14 +12,14 @@ const Header = () => {
           <a className="navbar-brand" href="index.html">
             <Image
               className="light-mode-item navbar-brand-item"
-              src="/assets/images/logo.svg"
+              src="/assets/images/logo.png"
               alt="logo"
               width={180}
               height={38}
             />
             <Image
               className="dark-mode-item navbar-brand-item"
-              src="/assets/images/logo-light.svg"
+              src="/assets/images/logo.png"
               alt="logo"
               width={180}
               height={38}
@@ -144,11 +145,35 @@ const Header = () => {
             {/* Nav category menu END */}
             {/* Nav Main menu START */}
             <ul className="navbar-nav navbar-nav-scroll me-auto">
-              {/* Nav item 1 Demos */}
+              {/* Nav item 1 Home */}
               <li className="nav-item">
-                <a className="nav-link" href="index.html">
+                <Link href="/" className="nav-link">
                   Home
-                </a>
+                </Link>
+              </li>
+              {/* Nav item 2 Courses */}
+              <li className="nav-item">
+                <Link href="/courses" className="nav-link">
+                  강의
+                </Link>
+              </li>
+              {/* Nav item 3 Curriculum */}
+              <li className="nav-item">
+                <Link href="/curriculums" className="nav-link">
+                  커리큘럼
+                </Link>
+              </li>
+              {/* Nav item 4 Contact */}
+              <li className="nav-item">
+                <Link href="/contact" className="nav-link">
+                  Contact
+                </Link>
+              </li>
+              {/* Nav item 5 About */}
+              <li className="nav-item">
+                <Link href="/about" className="nav-link">
+                  About
+                </Link>
               </li>
             </ul>
             {/* Nav Main menu END */}

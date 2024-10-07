@@ -1,6 +1,4 @@
 import "./globals.css";
-import Head from "next/head";
-import ThemeProvider from "./components/ThemeProvider";
 import Header from "./components/Header";
 import Script from "next/script";
 import BackToTop from "./components/BackToTop";
@@ -14,12 +12,12 @@ export const metadata = {
   charset: "utf-8",
 };
 
+export const favicon =
+  "https://github.com/weniv/wenivlog_manual/blob/main/src/assets/favicon.svg";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
-        <ThemeProvider />
-      </Head>
       <body>
         <Header />
         {children}
@@ -35,6 +33,12 @@ export default function RootLayout({ children }) {
 
         {/* Template Functions */}
         <Script src="/assets/js/functions.js" />
+
+        {/* Theme Provider */}
+        <Script
+          src="/assets/js/theme_provider.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

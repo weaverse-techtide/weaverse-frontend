@@ -175,9 +175,8 @@ export default function Home() {
               </figure>
               {/* Title */}
               <h1 className="mb-0 display-6">
-                Limitless learning at your
+                한 사람을 기술로 세우고, 그 기술로 먹고 살 수 있도록 하는 것
                 <span className="position-relative">
-                  fingertips
                   {/* SVG START */}
                   <span className="position-absolute top-50 start-50 translate-middle ms-3 z-index-n1">
                     <svg
@@ -198,26 +197,23 @@ export default function Home() {
               </h1>
               {/* Content */}
               <p className="my-4 lead">
-                Online learning and teaching marketplace with 5K+ courses & 10M
-                students. Taught by experts to help you acquire new skills.
+                경력과 노하우, 타 부트캠프에 없는 책 출판 프로젝트 등
+                &apos;진심&apos;을 전달하기 위한 여러 프로그램과 실무자의
+                실무위주 교육으로 여러분들과 함께합니다.
               </p>
 
               {/* Info */}
               <ul className="list-inline position-relative justify-content-center justify-content-lg-start mb-4">
                 <li className="list-inline-item me-2">
-                  {" "}
-                  <i className="bi bi-patch-check-fill h6 me-1"></i>Learn with
-                  experts
+                  <i className="bi bi-patch-check-fill h6 me-1"></i>실무자의
+                  실무위주 교육
                 </li>
                 <li className="list-inline-item me-2">
-                  {" "}
-                  <i className="bi bi-patch-check-fill h6 me-1"></i>Get
-                  certificate
+                  <i className="bi bi-patch-check-fill h6 me-1"></i>부트캠프
+                  수료율 100%
                 </li>
                 <li className="list-inline-item">
-                  {" "}
-                  <i className="bi bi-patch-check-fill h6 me-1"></i>Get
-                  membership
+                  <i className="bi bi-patch-check-fill h6 me-1"></i>멘토링
                 </li>
               </ul>
 
@@ -234,12 +230,12 @@ export default function Home() {
                   <a
                     data-glightbox
                     data-gallery="office-tour"
-                    href="https://www.youtube.com/embed/tXHviS-4ygo"
+                    href="https://www.youtube.com/watch?v=bZh8oUIDfdI"
                     className="btn btn-round btn-primary-shadow mb-0 overflow-visible me-7"
                   >
                     <i className="fas fa-play"></i>
                     <h6 className="mb-0 ms-3 fw-normal position-absolute start-100 top-50 translate-middle-y">
-                      Watch video
+                      소개 영상
                     </h6>
                   </a>
                 </div>
@@ -298,26 +294,26 @@ export default function Home() {
               {/* Icon logos START */}
               <div className="p-2 bg-white shadow rounded-3 position-absolute top-50 start-0 translate-middle-y mt-n7 d-none d-sm-block">
                 <Image
-                  src="/assets/images/client/science.svg"
+                  src="/assets/images/client/fastapi-svgrepo-com.svg"
                   alt="Icon"
-                  height={50}
-                  width={50}
+                  height={80}
+                  width={80}
                 />
               </div>
               <div className="p-2 bg-white shadow rounded-3 position-absolute top-0 end-0 me-5">
                 <Image
-                  src="/assets/images/client/angular.svg"
+                  src="/assets/images/client/python-svgrepo-com.svg"
                   alt="Icon"
-                  height={50}
-                  width={50}
+                  height={80}
+                  width={80}
                 />
               </div>
               <div className="p-2 bg-white shadow rounded-3 position-absolute top-50 end-0 translate-middle-y mt-5 ms-5 d-none d-lg-block z-index-9">
                 <Image
-                  src="/assets/images/client/figma.svg"
+                  src="/assets/images/client/django-svgrepo-com.svg"
                   alt="Icon"
-                  height={50}
-                  width={50}
+                  height={80}
+                  width={80}
                 />
               </div>
               {/* Icon logos END */}
@@ -332,13 +328,13 @@ export default function Home() {
                   {/* Info */}
                   <div className="text-start ms-3">
                     <h6 className="mb-0 text-white">
-                      Congratulations{" "}
+                      축하합니다!
                       <span className="ms-4">
                         <i className="fas fa-check-circle text-success"></i>
                       </span>
                     </h6>
                     <p className="mb-0 small text-white">
-                      Your admission completed
+                      당신은 이미 성공을 향해 나아가고 있습니다.
                     </p>
                   </div>
                 </div>
@@ -405,7 +401,7 @@ export default function Home() {
               {/* Image */}
               <div className="position-relative ms-sm-4">
                 <Image
-                  src="/assets/images/element/07.png"
+                  src="/assets/images/avatar/Leehojun.png"
                   alt="Image"
                   height={500}
                   width={500}
@@ -441,7 +437,7 @@ export default function Home() {
                     </h5>
                     <span className="mb-0 h5">K</span>
                   </div>
-                  <p className="mb-0">Online Courses</p>
+                  <p className="mb-0">온라인 강의</p>
                 </div>
               </div>
             </div>
@@ -463,7 +459,7 @@ export default function Home() {
                     </h5>
                     <span className="mb-0 h5">+</span>
                   </div>
-                  <p className="mb-0">Expert Tutors</p>
+                  <p className="mb-0">전문가</p>
                 </div>
               </div>
             </div>
@@ -485,7 +481,7 @@ export default function Home() {
                     </h5>
                     <span className="mb-0 h5">K+</span>
                   </div>
-                  <p className="mb-0">Online Students</p>
+                  <p className="mb-0">온라인 수강생</p>
                 </div>
               </div>
             </div>
@@ -507,7 +503,7 @@ export default function Home() {
                     </h5>
                     <span className="mb-0 h5">K+</span>
                   </div>
-                  <p className="mb-0">Certified Courses</p>
+                  <p className="mb-0">커리큘럼</p>
                 </div>
               </div>
             </div>
@@ -521,9 +517,9 @@ export default function Home() {
           {/* Title */}
           <div className="row mb-4">
             <div className="col-lg-8 mx-auto text-center">
-              <h2 className="fs-1">Most Popular Courses</h2>
+              <h2 className="fs-1">실시간 BEST 인기 강의</h2>
               <p className="mb-0">
-                Choose from hundreds of courses from specialist organizations
+                수많은 학생들이 선호하는 인기 강의를 만나보세요.
               </p>
             </div>
           </div>
@@ -2295,18 +2291,15 @@ export default function Home() {
                     <div className="row align-items-center">
                       {/* Title */}
                       <div className="col-lg-7">
-                        <h3 className="text-white">Become an Instructor!</h3>
+                        <h3 className="text-white">바로 상담 하세요!</h3>
                         <p className="text-white mb-3 mb-lg-0">
-                          Speedily say has suitable disposal add boy. On forth
-                          doubt miles of child. Exercise joy man children
-                          rejoiced. Yet uncommonly his ten who diminution
-                          astonished.
+                          바로 상담을 통해 궁금한 사항을 해결하세요.
                         </p>
                       </div>
                       {/* Content and input */}
                       <div className="col-lg-5 text-lg-end">
                         <a href="#" className="btn btn-outline-warning mb-0">
-                          Start Teaching Today
+                          바로 상담하기
                         </a>
                       </div>
                     </div>
@@ -2329,8 +2322,11 @@ Trending courses START */}
           {/* Title */}
           <div className="row mb-4">
             <div className="col-lg-8 mx-auto text-center">
-              <h2 className="fs-1">Our Trending Courses</h2>
-              <p className="mb-0">Check out most 🔥 courses in the market</p>
+              <h2 className="fs-1">최신 부트캠프</h2>
+              <p className="mb-0">
+                부트캠프 수료율 100% 믿기지 않는 수치가 가능했던 이유는 수강생을
+                향한 &apos;진심&apos;이었습니다.
+              </p>
             </div>
           </div>
           <div className="row">
@@ -2791,9 +2787,12 @@ Reviews START */}
                         <span className="me-1 small">
                           <i className="fas fa-quote-left"></i>
                         </span>
-                        Moonlight newspaper up its enjoyment agreeable
-                        depending. Timed voice share led him to widen noisy
-                        young. At weddings believed laughing
+                        안녕하세요 대표님! 오늘 자로 입시가 끝나게 되서 소식
+                        전해드립니다. 하버드, 스탠퍼드, 컬럼비아에서 합격을
+                        받았습니다. 컬럼비아는 성적장학금도 수령했고요. 항상
+                        도와주시고 추천서도 써주셔서 감사합니다. 필요하신 것이나
+                        같이 진행해 보시고 싶은 프로젝트 있으시면 항상 연락
+                        주세요!
                         <span className="ms-1 small">
                           <i className="fas fa-quote-right"></i>
                         </span>
@@ -2996,8 +2995,13 @@ Reviews START */}
                         <span className="me-1 small">
                           <i className="fas fa-quote-left"></i>
                         </span>
-                        At weddings believed laughing although the Moonlight
-                        newspaper up its enjoyment agreeable depending.
+                        안녕하세요 대표님~~ 잘 지내고 계신가요?? 다름이 아니라
+                        제가 방금 OOO 합격 연락을 받아서 연락드립니다..! 제주 웹
+                        컨퍼런스에서 발표했던 게 이렇게까지 이어진 것 같아서
+                        대표님한테 너무 감사드려요 ☺️ 프론트엔드 스쿨에서 열심히
+                        수업해 주신 것부터 웹 컨퍼런스, 워케이션 등등 전부 너무
+                        감사드립니다!! 다 대표님 덕분이에요..🙏 저는 이제 게임
+                        개발자로 또 열심히 성장해나가보도록 하겠습니다!! 💪💪
                         <span className="ms-1 small">
                           <i className="fas fa-quote-right"></i>
                         </span>
@@ -3030,13 +3034,9 @@ Reviews START */}
             </div>
             <div className="col-xl-5 order-1 text-center text-xl-start">
               {/* Title */}
-              <h2 className="fs-1">Some valuable feedback from our students</h2>
+              <h2 className="fs-1">수상생들의 귀중한 피드백</h2>
               <p>
-                Supposing so be resolving breakfast am or perfectly. It drew a
-                hill from me. Valley by oh twenty direct me so. Departure
-                defective arranging rapturous did believe him all had supported.
-                Family months lasted simple set nature vulgar him. Picture for
-                attempt joy excited ten carried manners talking how.
+                위니브의 부트캠프를 수강했던 수강생의 생생한 후기를 살펴보세요.
               </p>
               <a href="#" className="btn btn-primary mb-0">
                 View Reviews
