@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import Script from "next/script";
 import BackToTop from "./components/BackToTop";
 import Footer from "./components/Footer";
+import * as jwt_decode from "jwt-decode";
+import { cookies } from "next/headers";
 
 export const viewport = "width=device-width, initial-scale=1, shrink-to-fit=no";
 
@@ -16,10 +18,26 @@ export const favicon =
   "https://github.com/weniv/wenivlog_manual/blob/main/src/assets/favicon.svg";
 
 export default function RootLayout({ children }) {
+  // 쿠키에서 access_token을 가져옵니다.
+  const cookiesStore = cookies();
+  const access_token = cookiesStore.get("access_token");
+  // access_token이 있으면 token을 decode합니다.
+  let decodedToken = null;
+  if (access_token) {
+    try {
+      decodedToken = jwt_decode(access_token);
+      console.log(decodedToken);
+    } catch (error) {
+      console.error(error);
+    }
+  } else {
+    console.log("access_token이 없습니다.");
+  }
+
   return (
     <html lang="en">
       <body>
-        <Header />
+        <Header decodedToken={decodedToken} />
         {children}
         <Footer />
         {/* Back to Top */}

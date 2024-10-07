@@ -1,6 +1,9 @@
 import Image from "next/image";
+import { fetchCourses } from "./utils/coursesFetcher";
 
-export default function Home() {
+export default async function Home() {
+  const courses = await fetchCourses();
+
   return (
     <main>
       {/* SVG START */}
