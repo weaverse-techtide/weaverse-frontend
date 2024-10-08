@@ -13,8 +13,23 @@
 /* GLightbox */
 @import url("/assets/vendor/glightbox/css/glightbox.css");
 
-/* Custom Style */
-@import url("/assets/css/style.css");
-
 /* AOS */
 @import url("/assets/vendor/aos/aos.css");
+
+/* Choices */
+@import url("/assets/vendor/choices/css/choices.min.css");
+
+/* plyr */
+@import url("/assets/vendor/plyr/plyr.css");
+
+/* quill */
+@import url("/assets/vendor/quill/css/quill.snow.css");
+
+/* bs-stepper */
+@import url("/assets/vendor/stepper/css/bs-stepper.min.css");
+
+/* ApexCharts */
+@import url("/assets/vendor/apexcharts/css/apexcharts.css");
+
+/* Custom Style */
+@import url("/assets/css/style.css");

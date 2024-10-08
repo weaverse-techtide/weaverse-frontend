@@ -48,8 +48,13 @@ export default function RootLayout({ children }) {
         <Script src="/assets/vendor/tiny-slider/tiny-slider.js" />
         <Script src="/assets/vendor/glightbox/js/glightbox.js" />
         <Script src="/assets/vendor/purecounterjs/dist/purecounter_vanilla.js" />
-
+        <Script src="/assets/vendor/sticky-js/sticky.min.js" />
+        <Script src="/assets//vendor/plyr/plyr.js" />
         <Script src="/assets/vendor/aos/aos.js" />
+        <Script src="/assets/vendor/choices/js/choices.min.js" />
+        <Script src="/assets/vendor/quill/js/quill.min.js" />
+        <Script src="/assets/vendor/stepper/js/bs-stepper.min.js" />
+        <Script src="/assets/vendor/apexcharts/js/apexcharts.min.js" />
 
         {/* Template Functions */}
         <Script src="/assets/js/functions.js" />
