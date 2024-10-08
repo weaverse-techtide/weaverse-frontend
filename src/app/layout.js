@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang="en">
+    <html lang="ko">
       <body>
         <Header decodedToken={decodedToken} />
         {children}
@@ -48,6 +48,8 @@ export default function RootLayout({ children }) {
         <Script src="/assets/vendor/tiny-slider/tiny-slider.js" />
         <Script src="/assets/vendor/glightbox/js/glightbox.js" />
         <Script src="/assets/vendor/purecounterjs/dist/purecounter_vanilla.js" />
+
+        <Script src="/assets/vendor/aos/aos.js" />
 
         {/* Template Functions */}
         <Script src="/assets/js/functions.js" />

@@ -15,3 +15,6 @@
 
 /* Custom Style */
 @import url("/assets/css/style.css");
+
+/* AOS */
+@import url("/assets/vendor/aos/aos.css");
