@@ -707,7 +707,7 @@ Award and Team START */}
           <div className="row">
             <div className="col-md-4 mb-4 mb-md-0">
               {/* Title */}
-              <h2>Awards'N Stuff</h2>
+              <h2>Awards&apos;N Stuff</h2>
               {/* Content */}
               <ul className="list-group list-group-borderless mt-4">
                 {/* Award item */}

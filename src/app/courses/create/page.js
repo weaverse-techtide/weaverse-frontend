@@ -32,7 +32,7 @@ Page Banner START */}
               <p className="text-white mb-0">
                 Read our{" "}
                 <a href="#" className="text-white">
-                  <u>"Before you create a course"</u>
+                  <u>Before you create a course</u>
                 </a>{" "}
                 article before submitting!
               </p>
@@ -1061,7 +1061,7 @@ Steps START */}
                               Submit a Course
                             </a>
                             <p className="mb-0 small mt-1">
-                              Once you click "Submit a Course", your course will
+                              Once you click Submit a Course, your course will
                               be uploaded and marked as pending for review.
                             </p>
                           </div>

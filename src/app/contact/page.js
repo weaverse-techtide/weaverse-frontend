@@ -19,7 +19,7 @@ export default function ContactPage() {
             <div className="col-lg-8 col-xl-6 text-center mx-auto">
               {/* Title */}
               <h6 className="text-primary">Contact us</h6>
-              <h1 className="mb-4">We're here to help!</h1>
+              <h1 className="mb-4">We&apos;re here to help!</h1>
             </div>
           </div>
 
@@ -179,7 +179,7 @@ export default function ContactPage() {
             {/* Contact form START */}
             <div className="col-md-6">
               {/* Title */}
-              <h2 className="mt-4 mt-md-0">Let's talk</h2>
+              <h2 className="mt-4 mt-md-0">Let&apos;s talk</h2>
               <p>
                 To request a quote or want to meet up for coffee, contact us
                 directly or fill out the form and we will get back to you

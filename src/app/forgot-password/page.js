@@ -13,7 +13,7 @@ export default function ForgotPasswordPage() {
                 <div className="text-center">
                   <h2 className="fw-bold">Welcome to our largest community</h2>
                   <p className="mb-0 h6 fw-light">
-                    Let's learn something new today!s
+                    Let&apos;s learn something new today!s
                   </p>
                 </div>
                 {/* SVG Image */}
@@ -66,7 +66,7 @@ export default function ForgotPasswordPage() {
                   </ul>
                   {/* Content */}
                   <p className="mb-0 h6 fw-light ms-0 ms-sm-3">
-                    4k+ Students joined us, now it's your turn.
+                    4k+ Students joined us, now it&apos;s your turn.
                   </p>
                 </div>
               </div>

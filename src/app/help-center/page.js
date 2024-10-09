@@ -68,7 +68,7 @@ Page Banner START */}
                       href="help-center-detail.html"
                     >
                       {" "}
-                      What's are the difference between a social?
+                      What&apos;s are the difference between a social?
                     </a>
                     <a
                       className="btn btn-primary-soft btn-sm fw-light"

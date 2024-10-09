@@ -22,28 +22,29 @@ const Header = ({ decodedToken }) => {
 
   const [cartItems, setCartItems] = useState([]);
 
-  if (decodedToken) {
-    useEffect(() => {
-      // Fetch cart items
-      const url = process.env.NEXT_PUBLIC_API_URL + "/cart";
-      const accessToken = cookie.get("access_token");
-      fetch(url, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+  useEffect(() => {
+    if (!decodedToken) {
+      return;
+    }
+    // Fetch cart items
+    const url = process.env.NEXT_PUBLIC_API_URL + "/cart";
+    const accessToken = cookie.get("access_token");
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.detail) {
+          return;
+        }
+        setCartItems(data.cart_items);
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.detail) {
-            return;
-          }
-          setCartItems(data.cart_items);
-        })
-        .catch((error) => {
-          console.error("Error fetching cart items:", error);
-        });
-    }, []);
-  }
+      .catch((error) => {
+        console.error("Error fetching cart items:", error);
+      });
+  }, [decodedToken]);
 
   return (
     <header className="navbar-light navbar-sticky header-static">

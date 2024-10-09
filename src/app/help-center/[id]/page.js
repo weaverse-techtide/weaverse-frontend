@@ -65,7 +65,7 @@ Page Banner START */}
                       href="help-center-detail.html"
                     >
                       {" "}
-                      What's are the difference between a social?
+                      What&apos;s are the difference between a social?
                     </a>
                     <a
                       className="btn btn-primary-soft btn-sm fw-light"
@@ -325,7 +325,7 @@ Page Content START */}
                         </li>
                         <li className="list-group-item d-flex pb-0">
                           <a href="#" className="mb-0">
-                            What's the difference between deactivating and
+                            What&apos;s the difference between deactivating and
                             deleting my account
                           </a>
                         </li>
