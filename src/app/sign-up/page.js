@@ -201,7 +201,7 @@ export default function SignUpPage() {
                   <div className="mt-4 text-center">
                     <span>
                       Already have an account?
-                      <Link href="/sign-in">Sign in here</Link>
+                      <Link href="/sign-in/">Sign in here</Link>
                     </span>
                   </div>
                 </div>

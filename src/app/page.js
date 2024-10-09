@@ -2,7 +2,7 @@ import Image from "next/image";
 import { fetchCourses } from "./utils/coursesFetcher";
 
 export default async function Home() {
-  const courses = await fetchCourses();
+  // const initialCourses = await fetchCourses();
 
   return (
     <main>
