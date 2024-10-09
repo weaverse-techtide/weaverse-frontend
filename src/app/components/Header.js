@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import SignOutButton from "./SignOutButton";
 
 const Header = ({ decodedToken }) => {
   return (
@@ -9,7 +10,7 @@ const Header = ({ decodedToken }) => {
       <nav className="navbar navbar-expand-xl">
         <div className="container-fluid px-3 px-xl-5">
           {/* Logo START */}
-          <a className="navbar-brand" href="index.html">
+          <Link href="/" className="navbar-brand">
             <Image
               className="light-mode-item navbar-brand-item"
               src="/assets/images/logo.png"
@@ -24,7 +25,7 @@ const Header = ({ decodedToken }) => {
               width={180}
               height={38}
             />
-          </a>
+          </Link>
           {/* Logo END */}
 
           {/* Responsive navbar toggler */}
@@ -135,9 +136,9 @@ const Header = ({ decodedToken }) => {
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link href="/categories" className="dropdown-item">
                       View all categories
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -214,7 +215,7 @@ const Header = ({ decodedToken }) => {
               >
                 <Image
                   className="avatar-img rounded-circle"
-                  src="/assets/images/avatar/01.jpg"
+                  src={decodedToken.image}
                   alt="avatar"
                   width={300}
                   height={300}
@@ -231,7 +232,7 @@ const Header = ({ decodedToken }) => {
                     <div className="avatar me-3">
                       <Image
                         className="avatar-img rounded-circle shadow"
-                        src="/assets/images/avatar/01.jpg"
+                        src={decodedToken.image}
                         alt="avatar"
                         width={300}
                         height={300}
@@ -239,9 +240,9 @@ const Header = ({ decodedToken }) => {
                     </div>
                     <div>
                       <a className="h6" href="#">
-                        Lori Ferguson
+                        {decodedToken.nickname}
                       </a>
-                      <p className="small m-0">example@gmail.com</p>
+                      <p className="small m-0">{decodedToken.email}</p>
                     </div>
                   </div>
                 </li>
@@ -259,16 +260,7 @@ const Header = ({ decodedToken }) => {
                     <i className="bi bi-gear fa-fw me-2"></i>Account Settings
                   </a>
                 </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    <i className="bi bi-info-circle fa-fw me-2"></i>Help
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item bg-danger-soft-hover" href="#">
-                    <i className="bi bi-power fa-fw me-2"></i>Sign Out
-                  </a>
-                </li>
+                <SignOutButton />
                 <li>
                   <hr className="dropdown-divider" />
                 </li>
@@ -337,7 +329,7 @@ const Header = ({ decodedToken }) => {
             </div>
           ) : (
             <div className="ms-1 ms-lg-0">
-              <Link href="/login" className="btn btn-primary">
+              <Link href="/sign-in" className="btn btn-primary">
                 로그인
               </Link>
             </div>

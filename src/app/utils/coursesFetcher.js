@@ -1,4 +1,4 @@
-const api = process.env.REACT_APP_API_URL;
+const api = process.env.NEXT_PUBLIC_API_URL;
 
 export async function fetchCourses() {
   const res = await fetch(`${api}/courses/`);

@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Script from "next/script";
 import BackToTop from "./components/BackToTop";
 import Footer from "./components/Footer";
-import * as jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 
 export const viewport = "width=device-width, initial-scale=1, shrink-to-fit=no";
@@ -25,8 +25,10 @@ export default function RootLayout({ children }) {
   let decodedToken = null;
   if (access_token) {
     try {
-      decodedToken = jwt_decode(access_token);
-      console.log(decodedToken);
+      decodedToken = jwtDecode(access_token.value);
+      if (decodedToken.exp < Date.now() / 1000) {
+        decodedToken = null;
+      }
     } catch (error) {
       console.error(error);
     }

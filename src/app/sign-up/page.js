@@ -1,78 +1,52 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SignUpPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm_password, setConfirmPassword] = useState("");
+  const [nickname, setNickname] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const url = process.env.NEXT_PUBLIC_API_URL + "/student/register/";
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, confirm_password, nickname }),
+      });
+
+      if (response.ok) {
+        // 회원가입 성공 시 로그인 페이지로 이동
+        window.location.href = "/";
+      } else {
+        // 에러 메시지를 설정
+        const data = await response.json();
+        console.error(data);
+      }
+
+      router.push("/");
+      router.refresh();
+    } catch (err) {
+      // 서버 오류 처리
+      console.error("서버 오류가 발생했습니다. 다시 시도해주세요.");
+    }
+  };
+
   return (
     <main>
       <section className="p-0 d-flex align-items-center position-relative overflow-hidden">
         <div className="container-fluid">
           <div className="row">
-            {/* left */}
-            <div className="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100">
-              <div className="p-3 p-lg-5">
-                {/* Title */}
-                <div className="text-center">
-                  <h2 className="fw-bold">Welcome to our largest community</h2>
-                  <p className="mb-0 h6 fw-light">
-                    Let&apos;s learn something new today!
-                  </p>
-                </div>
-                {/* SVG Image */}
-                {/* <img src="assets/images/element/02.svg" className="mt-5" alt=""> */}
-                <Image
-                  src="/assets/images/element/02.svg"
-                  className="mt-5"
-                  alt=""
-                  height={900}
-                  width={1000}
-                />
-                {/* Info */}
-                <div className="d-sm-flex mt-5 align-items-center justify-content-center">
-                  <ul className="avatar-group mb-2 mb-sm-0">
-                    <li className="avatar avatar-sm">
-                      <Image
-                        src="/assets/images/avatar/01.jpg"
-                        className="avatar-img rounded-circle"
-                        alt="avatar"
-                        height={100}
-                        width={100}
-                      />
-                    </li>
-                    <li className="avatar avatar-sm">
-                      <Image
-                        src="/assets/images/avatar/02.jpg"
-                        className="avatar-img rounded-circle"
-                        alt="avatar"
-                        height={100}
-                        width={100}
-                      />
-                    </li>
-                    <li className="avatar avatar-sm">
-                      <Image
-                        src="/assets/images/avatar/03.jpg"
-                        className="avatar-img rounded-circle"
-                        alt="avatar"
-                        height={100}
-                        width={100}
-                      />
-                    </li>
-                    <li className="avatar avatar-sm">
-                      <Image
-                        src="/assets/images/avatar/04.jpg"
-                        className="avatar-img rounded-circle"
-                        alt="avatar"
-                        height={100}
-                        width={100}
-                      />
-                    </li>
-                  </ul>
-                  {/* Content */}
-                  <p className="mb-0 h6 fw-light ms-0 ms-sm-3">
-                    4k+ Students joined us, now it&apos;s your turn.
-                  </p>
-                </div>
-              </div>
-            </div>
-
             {/* Right */}
             <div className="col-12 col-lg-6 m-auto">
               <div className="row my-5">
@@ -85,13 +59,10 @@ export default function SignUpPage() {
                     height={40}
                     width={40}
                   />
-                  <h2>Sign up for your account!</h2>
-                  <p className="lead mb-4">
-                    Nice to see you! Please Sign up with your account.
-                  </p>
-
+                  <h2>안녕하세요! 회원가입을 해주세요.</h2>
+                  <p className="lead mb-4">꿈이 현실이 되는 곳, Weaverse!</p>
                   {/* Form START */}
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     {/* Email */}
                     <div className="mb-4">
                       <label
@@ -108,7 +79,28 @@ export default function SignUpPage() {
                           type="email"
                           className="form-control border-0 bg-light rounded-end ps-1"
                           placeholder="E-mail"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
                           id="exampleInputEmail1"
+                        />
+                      </div>
+                    </div>
+                    {/* Nickname */}
+                    <div className="mb-4">
+                      <label htmlFor="inputNickname" className="form-label">
+                        Nickname *
+                      </label>
+                      <div className="input-group input-group-lg">
+                        <span className="input-group-text bg-light rounded-start border-0 text-secondary px-3">
+                          <i className="bi bi-person"></i>
+                        </span>
+                        <input
+                          type="text"
+                          className="form-control border-0 bg-light rounded-end ps-1"
+                          placeholder="Nickname"
+                          value={nickname}
+                          onChange={(e) => setNickname(e.target.value)}
+                          id="inputNickname"
                         />
                       </div>
                     </div>
@@ -125,6 +117,9 @@ export default function SignUpPage() {
                           type="password"
                           className="form-control border-0 bg-light rounded-end ps-1"
                           placeholder="*********"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          autoComplete="current-password"
                           id="inputPassword5"
                         />
                       </div>
@@ -142,6 +137,9 @@ export default function SignUpPage() {
                           type="password"
                           className="form-control border-0 bg-light rounded-end ps-1"
                           placeholder="*********"
+                          value={confirm_password}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          autoComplete="current-password"
                           id="inputPassword6"
                         />
                       </div>
@@ -166,7 +164,7 @@ export default function SignUpPage() {
                     {/* Button */}
                     <div className="align-items-center mt-0">
                       <div className="d-grid">
-                        <button className="btn btn-primary mb-0" type="button">
+                        <button className="btn btn-primary mb-0" type="submit">
                           Sign Up
                         </button>
                       </div>
@@ -203,7 +201,7 @@ export default function SignUpPage() {
                   <div className="mt-4 text-center">
                     <span>
                       Already have an account?
-                      <a href="sign-in.html"> Sign in here</a>
+                      <Link href="/sign-in">Sign in here</Link>
                     </span>
                   </div>
                 </div>
