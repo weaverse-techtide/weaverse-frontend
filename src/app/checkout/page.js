@@ -282,13 +282,13 @@ Page content START */}
                                   <input
                                     type="text"
                                     className="form-control"
-                                    maxlength="2"
+                                    maxLength="2"
                                     placeholder="Month"
                                   />
                                   <input
                                     type="text"
                                     className="form-control"
-                                    maxlength="4"
+                                    maxLength="4"
                                     placeholder="Year"
                                   />
                                 </div>
@@ -302,7 +302,7 @@ Page content START */}
                                 <input
                                   type="text"
                                   className="form-control"
-                                  maxlength="3"
+                                  maxLength="3"
                                   placeholder="xxx"
                                 />
                               </div>

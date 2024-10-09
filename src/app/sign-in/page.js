@@ -1,4 +1,3 @@
-import Link from "next/link";
 import SignInForm from "./SginInForm";
 
 export default function SignInPage() {
@@ -46,7 +45,7 @@ export default function SignInPage() {
                   <div className="mt-4 text-center">
                     <span>
                       Don&apos;t have an account?
-                      <Link href="/sign-up">Signup here</Link>
+                      <a href="/sign-up">Signup here</a>
                     </span>
                   </div>
                 </div>

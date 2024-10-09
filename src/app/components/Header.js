@@ -1,16 +1,57 @@
+"use client";
+
 import React from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import SignOutButton from "./SignOutButton";
+import HeaderSearchForm from "./HeaderSearchForm";
+import cookie from "js-cookie";
 
 const Header = ({ decodedToken }) => {
+  const categories = [
+    "JavaScript",
+    "Python",
+    "Django",
+    "React",
+    "Vue",
+    "Node",
+    "AWS",
+    "Docker",
+    "DB",
+  ];
+
+  const [cartItems, setCartItems] = useState([]);
+
+  if (decodedToken) {
+    useEffect(() => {
+      // Fetch cart items
+      const url = process.env.NEXT_PUBLIC_API_URL + "/cart";
+      const accessToken = cookie.get("access_token");
+      fetch(url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.detail) {
+            return;
+          }
+          setCartItems(data.cart_items);
+        })
+        .catch((error) => {
+          console.error("Error fetching cart items:", error);
+        });
+    }, []);
+  }
+
   return (
     <header className="navbar-light navbar-sticky header-static">
       {/* Nav START */}
       <nav className="navbar navbar-expand-xl">
         <div className="container-fluid px-3 px-xl-5">
           {/* Logo START */}
-          <Link href="/" className="navbar-brand">
+          <a href="/" className="navbar-brand">
             <Image
               className="light-mode-item navbar-brand-item"
               src="/assets/images/logo.png"
@@ -25,7 +66,7 @@ const Header = ({ decodedToken }) => {
               width={180}
               height={38}
             />
-          </Link>
+          </a>
           {/* Logo END */}
 
           {/* Responsive navbar toggler */}
@@ -64,81 +105,20 @@ const Header = ({ decodedToken }) => {
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="categoryMenu">
                   {/* Dropdown submenu */}
-                  <li className="dropdown-submenu dropend">
-                    <a className="dropdown-item dropdown-toggle" href="#">
-                      Web Development
-                    </a>
-                    <ul className="dropdown-menu" data-bs-popper="none">
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          CSS
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          JavaScript
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          Angular
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          PHP
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          HTML
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          React
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
+                  {categories.map((category, index) => (
+                    <li key={index}>
+                      <a
+                        href={`/courses/?` + `category=${category}`}
+                        className="dropdown-item"
+                      >
+                        {category}
+                      </a>
+                    </li>
+                  ))}
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Data Science
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Mobile Development
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Programing Language
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Software Testing
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Software Engineering
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Software Development Tools
-                    </a>
-                  </li>
-                  {/* Dropdown submenu */}
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <Link href="/categories" className="dropdown-item">
+                    <a href="/categories" className="dropdown-item">
                       View all categories
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </li>
@@ -148,33 +128,33 @@ const Header = ({ decodedToken }) => {
             <ul className="navbar-nav navbar-nav-scroll me-auto">
               {/* Nav item 1 Home */}
               <li className="nav-item">
-                <Link href="/" className="nav-link">
-                  Home
-                </Link>
+                <a href="/" className="nav-link">
+                  홈
+                </a>
               </li>
               {/* Nav item 2 Courses */}
               <li className="nav-item">
-                <Link href="/courses" className="nav-link">
+                <a href="/courses" className="nav-link">
                   강의
-                </Link>
+                </a>
               </li>
               {/* Nav item 3 Curriculum */}
               <li className="nav-item">
-                <Link href="/curriculums" className="nav-link">
+                <a href="/curriculums" className="nav-link">
                   커리큘럼
-                </Link>
+                </a>
               </li>
               {/* Nav item 4 Contact */}
               <li className="nav-item">
-                <Link href="/contact" className="nav-link">
-                  Contact
-                </Link>
+                <a href="/contact" className="nav-link">
+                  상담
+                </a>
               </li>
               {/* Nav item 5 About */}
               <li className="nav-item">
-                <Link href="/about" className="nav-link">
-                  About
-                </Link>
+                <a href="/about" className="nav-link">
+                  소개
+                </a>
               </li>
             </ul>
             {/* Nav Main menu END */}
@@ -182,25 +162,80 @@ const Header = ({ decodedToken }) => {
             {/* Nav Search START */}
             <div className="nav my-3 my-xl-0 px-4 flex-nowrap align-items-center">
               <div className="nav-item w-100">
-                <form className="position-relative">
-                  <input
-                    className="form-control pe-5 bg-transparent"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                  <button
-                    className="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset"
-                    type="submit"
-                  >
-                    <i className="fas fa-search fs-6 "></i>
-                  </button>
-                </form>
+                <HeaderSearchForm />
               </div>
             </div>
             {/* Nav Search END */}
           </div>
-          {/* Main navbar END */}
+          {decodedToken && (
+            <div className="nav-item ms-2 dropdown me-3">
+              {/* Cart button */}
+              <a
+                className="btn btn-light btn-round mb-0"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                data-bs-auto-close="outside"
+              >
+                <i className="bi bi-cart3 fa-fw"></i>
+              </a>
+              {/* badge */}
+              {cartItems.length > 0 && (
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-dark mt-xl-2 ms-n1">
+                  {cartItems.length}
+                  <span className="visually-hidden">unread messages</span>
+                </span>
+              )}
+
+              {/* Cart dropdown menu START */}
+              <div className="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0">
+                <div className="card bg-transparent">
+                  <div className="card-header bg-transparent border-bottom py-4">
+                    <h5 className="m-0">Cart items</h5>
+                  </div>
+                  <div className="card-body p-0">
+                    {/* Cart item START */}
+                    {cartItems.map((item, index) => (
+                      <div className="row p-3 g-2" key={item.id}>
+                        {/* Image */}
+                        <div className="col-3">
+                          <Image
+                            className="rounded-2"
+                            src="/assets/images/avatar/03.jpg"
+                            alt={item.item_name}
+                            width={300}
+                            height={300}
+                          />
+                        </div>
+                        <div className="col-9">
+                          {/* Title */}
+                          <div className="d-flex justify-content-between">
+                            <h6 className="m-0">{item.item_name}</h6>
+                            <a href="#" className="small text-primary-hover">
+                              <i className="bi bi-x-lg"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    {/* Cart item END */}
+                  </div>
+                  {/* Button */}
+                  <div className="card-footer bg-transparent border-top py-3 text-center d-flex justify-content-between position-relative">
+                    <a href="/cart" className="btn btn-sm btn-light mb-0">
+                      View Cart
+                    </a>
+                    <a href="/checkout" className="btn btn-sm btn-success mb-0">
+                      Checkout
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* Cart dropdown menu END */}
+            </div>
+          )}
+          {/* Add to cart END */}
           {decodedToken ? (
             <div className="dropdown ms-1 ms-lg-0">
               <a
@@ -328,10 +363,10 @@ const Header = ({ decodedToken }) => {
               </ul>
             </div>
           ) : (
-            <div className="ms-1 ms-lg-0">
-              <Link href="/sign-in" className="btn btn-primary">
+            <div className="navbar-nav ms-2">
+              <a href="/sign-in" className="btn btn-sm btn-dark mb-0">
                 로그인
-              </Link>
+              </a>
             </div>
           )}
           {/* Profile END */}

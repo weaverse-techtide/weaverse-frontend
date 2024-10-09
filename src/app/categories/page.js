@@ -1,6 +1,19 @@
 import Image from "next/image";
+import SearchForm from "../components/SearchForm";
 
 export default function CategoriesPage() {
+  const categories = [
+    ["JavaScript", 22, "bg-orange", "JavaScript"],
+    ["Python", 15, "bg-success", "Python"],
+    ["Django", 10, "bg-primary", "Django"],
+    ["React", 25, "bg-purple", "React"],
+    ["Vue", 20, "bg-info", "Vue"],
+    ["Node", 30, "bg-warning", "Node"],
+    ["AWS", 20, "bg-dark", "AWS"],
+    ["Docker", 10, "bg-danger", "Docker"],
+    ["DB", 15, "bg-success", "Database"],
+  ];
+
   return (
     <main>
       {/* =======================
@@ -60,21 +73,7 @@ Page Banner START */}
                   </p>
 
                   {/* Search */}
-                  <form className="bg-body rounded p-2">
-                    <div className="input-group">
-                      <input
-                        className="form-control border-0 me-1"
-                        type="search"
-                        placeholder="Search course "
-                      />
-                      <button
-                        type="button"
-                        className="btn btn-dark mb-0 rounded"
-                      >
-                        Search
-                      </button>
-                    </div>
-                  </form>
+                  <SearchForm />
                 </div>
 
                 {/* Image */}
@@ -112,482 +111,38 @@ Categories START */}
 
           <div className="row g-4">
             {/* Item */}
-            <div className="col-sm-6 col-md-4 col-xl-3">
-              <div className="card card-body bg-success bg-opacity-10 text-center position-relative btn-transition p-4">
-                {/* Image */}
-                <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
-                  <Image
-                    src="/assets/images/element/data-science.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
+            {categories.map((category, index) => (
+              <div className="col-sm-6 col-md-4 col-xl-3" key={index}>
+                <div
+                  className={`card card-body ${category[2]} bg-opacity-10 text-center position-relative btn-transition p-4`}
+                >
+                  {/* Image */}
+                  <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
+                    <Image
+                      src={`/assets/images/element/${category[3].toLowerCase()}.svg`}
+                      alt=""
+                      height={100}
+                      width={100}
+                    />
+                  </div>
+                  {/* Title */}
+                  <h5 className="mb-2">
+                    <a
+                      href={`/courses/?category=${category[0]}`}
+                      className="stretched-link"
+                    >
+                      {category[3]}
+                    </a>
+                  </h5>
+                  <h6 className="mb-0">{category[1]} Courses</h6>
                 </div>
-                {/* Title */}
-                <h5 className="mb-2">
-                  <a href="#" className="stretched-link">
-                    Data Science
-                  </a>
-                </h5>
-                <h6 className="mb-0">15 Courses</h6>
               </div>
-            </div>
-
-            {/* Item */}
-            <div className="col-sm-6 col-md-4 col-xl-3">
-              <div className="card card-body bg-orange bg-opacity-10 text-center position-relative btn-transition p-4">
-                {/* Image */}
-                <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
-                  <Image
-                    src="/assets/images/element/online.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Title */}
-                <h5 className="mb-2">
-                  <a href="#" className="stretched-link">
-                    IT & Software
-                  </a>
-                </h5>
-                <h6 className="mb-0">22 Courses</h6>
-              </div>
-            </div>
-
-            {/* Item */}
-            <div className="col-sm-6 col-md-4 col-xl-3">
-              <div className="card card-body bg-danger bg-opacity-10 text-center position-relative btn-transition p-4">
-                {/* Image */}
-                <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
-                  <Image
-                    src="/assets/images/element/engineering.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Title */}
-                <h5 className="mb-2">
-                  <a href="#" className="stretched-link">
-                    Engineering
-                  </a>
-                </h5>
-                <h6 className="mb-0">53 Courses</h6>
-              </div>
-            </div>
-
-            {/* Item */}
-            <div className="col-sm-6 col-md-4 col-xl-3">
-              <div className="card card-body bg-purple bg-opacity-10 text-center position-relative btn-transition p-4">
-                {/* Image */}
-                <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
-                  <Image
-                    src="/assets/images/element/coding.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Title */}
-                <h5 className="mb-2">
-                  <a href="#" className="stretched-link">
-                    Web Development
-                  </a>
-                </h5>
-                <h6 className="mb-0">25 Courses</h6>
-              </div>
-            </div>
-
-            {/* Item */}
-            <div className="col-sm-6 col-md-4 col-xl-3">
-              <div className="card card-body bg-info bg-opacity-10 text-center position-relative btn-transition p-4">
-                {/* Image */}
-                <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
-                  <Image
-                    src="/assets/images/element/profit.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Title */}
-                <h5 className="mb-2">
-                  <a href="#" className="stretched-link">
-                    Finance
-                  </a>
-                </h5>
-                <h6 className="mb-0">20 Courses</h6>
-              </div>
-            </div>
-
-            {/* Item */}
-            <div className="col-sm-6 col-md-4 col-xl-3">
-              <div className="card card-body bg-blue bg-opacity-10 text-center position-relative btn-transition p-4">
-                {/* Image */}
-                <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
-                  <Image
-                    src="/assets/images/element/medical.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Title */}
-                <h5 className="mb-2">
-                  <a href="#" className="stretched-link">
-                    Medical
-                  </a>
-                </h5>
-                <h6 className="mb-0">10 Courses</h6>
-              </div>
-            </div>
-
-            {/* Item */}
-            <div className="col-sm-6 col-md-4 col-xl-3">
-              <div className="card card-body bg-warning bg-opacity-15 text-center position-relative btn-transition p-4">
-                {/* Image */}
-                <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
-                  <Image
-                    src="/assets/images/element/home.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Title */}
-                <h5 className="mb-2">
-                  <a href="#" className="stretched-link">
-                    Architecture
-                  </a>
-                </h5>
-                <h6 className="mb-0">30 Courses</h6>
-              </div>
-            </div>
-
-            {/* Item */}
-            <div className="col-sm-6 col-md-4 col-xl-3">
-              <div className="card card-body bg-dark bg-opacity-10 text-center position-relative btn-transition p-4">
-                {/* Image */}
-                <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
-                  <Image
-                    src="/assets/images/element/artist.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Title */}
-                <h5 className="mb-2">
-                  <a href="#" className="stretched-link">
-                    Art &amp; Design
-                  </a>
-                </h5>
-                <h6 className="mb-0">35 Courses</h6>
-              </div>
-            </div>
-
-            {/* Item */}
-            <div className="col-sm-6 col-md-4 col-xl-3">
-              <div className="card card-body bg-purple bg-opacity-10 text-center position-relative btn-transition p-4">
-                {/* Image */}
-                <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
-                  <Image
-                    src="/assets/images/element/photography.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Title */}
-                <h5 className="mb-2">
-                  <a href="#" className="stretched-link">
-                    Photography
-                  </a>
-                </h5>
-                <h6 className="mb-0">20 Courses</h6>
-              </div>
-            </div>
-
-            {/* Item */}
-            <div className="col-sm-6 col-md-4 col-xl-3">
-              <div className="card card-body bg-danger bg-opacity-10 text-center position-relative btn-transition p-4">
-                {/* Image */}
-                <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
-                  <Image
-                    src="/assets/images/element/music.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Title */}
-                <h5 className="mb-2">
-                  <a href="#" className="stretched-link">
-                    Musics
-                  </a>
-                </h5>
-                <h6 className="mb-0">10 Courses</h6>
-              </div>
-            </div>
-
-            {/* Item */}
-            <div className="col-sm-6 col-md-4 col-xl-3">
-              <div className="card card-body bg-success bg-opacity-10 text-center position-relative btn-transition p-4">
-                {/* Image */}
-                <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
-                  <Image
-                    src="/assets/images/element/marketing.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Title */}
-                <h5 className="mb-2">
-                  <a href="#" className="stretched-link">
-                    Marketing
-                  </a>
-                </h5>
-                <h6 className="mb-0">30 Courses</h6>
-              </div>
-            </div>
-
-            {/* Item */}
-            <div className="col-sm-6 col-md-4 col-xl-3">
-              <div className="card card-body bg-primary bg-opacity-10 text-center position-relative btn-transition p-4">
-                {/* Image */}
-                <div className="icon-xl bg-body mx-auto rounded-circle mb-3">
-                  <Image
-                    src="/assets/images/element/account.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Title */}
-                <h5 className="mb-2">
-                  <a href="#" className="stretched-link">
-                    Accounting
-                  </a>
-                </h5>
-                <h6 className="mb-0">35 Courses</h6>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
       {/* =======================
 Categories END */}
-
-      {/* =======================
-Language START */}
-      <section>
-        <div className="container">
-          {/* Title */}
-          <div className="row mb-4 mx-auto text-center">
-            <div className="col-12">
-              <h2 className="mb-0">Choose Languages</h2>
-            </div>
-          </div>
-
-          <div className="row g-4">
-            {/* Language item */}
-            <div className="col-sm-6 col-md-4 col-lg-3">
-              <div className="bg-light rounded-2 p-3 d-flex align-items-center position-relative justify-content-center">
-                <Image
-                  src="/assets/images/flags/fr.svg"
-                  alt=""
-                  height={40}
-                  width={40}
-                />
-                <h5 className="mb-0">
-                  <a href="#" className="stretched-link text-primary-hover"></a>
-                  French
-                </h5>
-              </div>
-            </div>
-
-            {/* Language item */}
-            <div className="col-sm-6 col-md-4 col-lg-3">
-              <div className="bg-light rounded-2 p-3 d-flex align-items-center position-relative justify-content-center">
-                <Image
-                  src="/assets/images/flags/gr.svg"
-                  alt=""
-                  height={40}
-                  width={40}
-                />
-                <h5 className="mb-0">
-                  <a href="#" className="stretched-link text-primary-hover"></a>
-                  German
-                </h5>
-              </div>
-            </div>
-
-            {/* Language item */}
-            <div className="col-sm-6 col-md-4 col-lg-3">
-              <div className="bg-light rounded-2 p-3 d-flex align-items-center position-relative justify-content-center">
-                <Image
-                  src="/assets/images/flags/sp.svg"
-                  alt=""
-                  height={40}
-                  width={40}
-                />
-                <h5 className="mb-0">
-                  <a href="#" className="stretched-link text-primary-hover"></a>
-                  Español
-                </h5>
-              </div>
-            </div>
-
-            {/* Language item */}
-            <div className="col-sm-6 col-md-4 col-lg-3">
-              <div className="bg-light rounded-2 p-3 d-flex align-items-center position-relative justify-content-center">
-                <Image
-                  src="/assets/images/flags/uk.svg"
-                  alt=""
-                  height={40}
-                  width={40}
-                />
-                <h5 className="mb-0">
-                  <a href="#" className="stretched-link text-primary-hover"></a>
-                  English
-                </h5>
-              </div>
-            </div>
-
-            {/* Language item */}
-            <div className="col-sm-6 col-md-4 col-lg-3">
-              <div className="bg-light rounded-2 p-3 d-flex align-items-center position-relative justify-content-center">
-                <Image
-                  src="/assets/images/flags/in.svg"
-                  alt=""
-                  height={40}
-                  width={40}
-                />
-                <h5 className="mb-0">
-                  <a href="#" className="stretched-link text-primary-hover"></a>
-                  Hindi
-                </h5>
-              </div>
-            </div>
-
-            {/* Language item */}
-            <div className="col-sm-6 col-md-4 col-lg-3">
-              <div className="bg-light rounded-2 p-3 d-flex align-items-center position-relative justify-content-center">
-                <Image
-                  src="/assets/images/flags/it.svg"
-                  alt=""
-                  height={40}
-                  width={40}
-                />
-                <h5 className="mb-0">
-                  <a href="#" className="stretched-link text-primary-hover"></a>
-                  Italian
-                </h5>
-              </div>
-            </div>
-
-            {/* Language item */}
-            <div className="col-sm-6 col-md-4 col-lg-3">
-              <div className="bg-light rounded-2 p-3 d-flex align-items-center position-relative justify-content-center">
-                <Image
-                  src="/assets/images/flags/ar.svg"
-                  alt=""
-                  height={40}
-                  width={40}
-                />
-                <h5 className="mb-0">
-                  <a href="#" className="stretched-link text-primary-hover"></a>
-                  Arabic
-                </h5>
-              </div>
-            </div>
-
-            {/* Language item */}
-            <div className="col-sm-6 col-md-4 col-lg-3">
-              <div className="bg-light rounded-2 p-3 d-flex align-items-center position-relative justify-content-center">
-                <Image
-                  src="/assets/images/flags/uk.svg"
-                  alt=""
-                  height={40}
-                  width={40}
-                />
-                <h5 className="mb-0">
-                  <a href="#" className="stretched-link text-primary-hover"></a>
-                  English
-                </h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* =======================
-Language END */}
-
-      {/* =======================
-Action box START */}
-      <section>
-        <div className="container">
-          <div className="row g-4">
-            {/* Action box item */}
-            <div className="col-lg-6 position-relative overflow-hidden">
-              <div className="bg-primary bg-opacity-10 rounded-3 p-5 h-100">
-                {/* Image */}
-                <div className="position-absolute bottom-0 end-0 me-3">
-                  <Image
-                    src="/assets/images/element/08.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Content */}
-                <div className="row">
-                  <div className="col-sm-8 position-relative">
-                    <h3 className="mb-1">Earn a Certificate</h3>
-                    <p className="mb-3 h5 fw-light lead">
-                      Get the right professional certificate program for you.
-                    </p>
-                    <a href="#" className="btn btn-primary mb-0">
-                      View Programs
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Action box item */}
-            <div className="col-lg-6 position-relative overflow-hidden">
-              <div className="bg-secondary rounded-3 bg-opacity-10 p-5 h-100">
-                {/* Image */}
-                <div className="position-absolute bottom-0 end-0 me-3">
-                  <Image
-                    src="/assets/images/element/15.svg"
-                    alt=""
-                    height={100}
-                    width={100}
-                  />
-                </div>
-                {/* Content */}
-                <div className="row">
-                  <div className="col-sm-8 position-relative">
-                    <h3 className="mb-1">Best Rated Courses</h3>
-                    <p className="mb-3 h5 fw-light lead">
-                      Enroll now in the most popular and best rated courses.
-                    </p>
-                    <a href="#" className="btn btn-warning mb-0">
-                      View Courses
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* =======================
-Action box END */}
     </main>
   );
 }

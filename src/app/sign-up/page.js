@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -201,7 +200,7 @@ export default function SignUpPage() {
                   <div className="mt-4 text-center">
                     <span>
                       Already have an account?
-                      <Link href="/sign-in/">Sign in here</Link>
+                      <a href="/sign-in/">Sign in here</a>
                     </span>
                   </div>
                 </div>

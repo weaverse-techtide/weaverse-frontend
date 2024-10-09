@@ -3,14 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { create, all } from "mathjs";
 
 export default function Courses({ initialCourses }) {
-  const math = create(all);
   const api = process.env.NEXT_PUBLIC_API_URL;
   const pageMaxNum = 5;
   const [totalPages, setTotalPages] = useState(
-    math.ceil(initialCourses.count / 9)
+    Math.ceil(initialCourses.count / 9)
   );
   const [totalCount, setTotalCount] = useState(initialCourses.count);
   const [courses, setCourses] = useState(initialCourses.results || []);
@@ -56,7 +54,7 @@ export default function Courses({ initialCourses }) {
     setShowingStart(1);
     setShowingEnd(data.results.length);
     setTotalCount(data.count);
-    setTotalPages(math.ceil(data.count / 9));
+    setTotalPages(Math.ceil(data.count / 9));
     setSearchText("");
     router.push(path);
   };
