@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CourseFilter from "../components/CourseFilter";
 
 export default function CurriculumsPage() {
   return (
@@ -18,7 +19,7 @@ Page Banner START */}
           <div className="row">
             <div className="col-12">
               {/* Title */}
-              <h1 className="text-white">Course List classic</h1>
+              <h1 className="text-white">커리큘럼 목록</h1>
               {/* Breadcrumb */}
               <div className="d-flex">
                 <nav aria-label="breadcrumb">

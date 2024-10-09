@@ -189,7 +189,7 @@ export default function ContactPage() {
               <form>
                 {/* Name */}
                 <div className="mb-4 bg-light-input">
-                  <label for="yourName" className="form-label">
+                  <label htmlFor="yourName" className="form-label">
                     Your name *
                   </label>
                   <input
@@ -200,7 +200,7 @@ export default function ContactPage() {
                 </div>
                 {/* Email */}
                 <div className="mb-4 bg-light-input">
-                  <label for="emailInput" className="form-label">
+                  <label htmlFor="emailInput" className="form-label">
                     Email address *
                   </label>
                   <input
@@ -211,7 +211,7 @@ export default function ContactPage() {
                 </div>
                 {/* Message */}
                 <div className="mb-4 bg-light-input">
-                  <label for="textareaBox" className="form-label">
+                  <label htmlFor="textareaBox" className="form-label">
                     Message *
                   </label>
                   <textarea
@@ -247,7 +247,7 @@ export default function ContactPage() {
                 height="500"
                 style={{ border: 0 }}
                 aria-hidden="false"
-                tabindex="0"
+                tabIndex="0"
               ></iframe>
             </div>
           </div>
