@@ -115,7 +115,7 @@ export default function Courses({ initialCourses }) {
     setShowingStart(1);
     setShowingEnd(data.results.length);
     setTotalCount(data.count);
-    setTotalPages(math.ceil(data.count / 9));
+    setTotalPages(Math.ceil(data.count / 9));
     setOrdering(newOrdering);
     router.push(path);
   };
