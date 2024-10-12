@@ -1,16 +1,16 @@
 import Courses from "../components/Courses";
-import { fetchCourses } from "../utils/coursesFetcher";
+import { fetchCourses } from "../utils/fetchCourses";
 import { notFound } from "next/navigation";
 import CourseFilter from "../components/CourseFilter";
 
 export default async function CoursesPage({ searchParams }) {
-  const page = searchParams.page || 1;
-  const category = searchParams.category || "";
-  const courseLevel = searchParams.course_level || "";
-  const search = searchParams.search || "";
-  const ordering = searchParams.ordering || "";
+  const query = await searchParams;
+  const page = query.page;
+  const category = query.category;
+  const courseLevel = query.course_level;
+  const search = query.search;
+  const ordering = query.ordering;
 
-  // const
   let initialCourses = [];
   try {
     initialCourses = await fetchCourses(
@@ -21,7 +21,6 @@ export default async function CoursesPage({ searchParams }) {
       ordering
     );
   } catch (error) {
-    // 404페이조로 이동합니다.
     return notFound();
   }
 
@@ -70,7 +69,7 @@ Page Banner END */}
             {/* Main content END */}
 
             {/* Right sidebar START */}
-            <CourseFilter searchParams={searchParams} />
+            <CourseFilter searchParams={query} />
             {/* Right sidebar END */}
           </div>
           {/* Row END */}

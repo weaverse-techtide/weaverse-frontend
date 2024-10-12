@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { fetchCourses } from "./utils/coursesFetcher";
+import { fetchCourses } from "./utils/fetchCourses";
 
 export default async function Home() {
   const mainCategories = ["Python", "JavaScript", "Django", "React", "AWS"];

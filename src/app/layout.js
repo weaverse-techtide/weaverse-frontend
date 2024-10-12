@@ -17,9 +17,9 @@ export const metadata = {
 export const favicon =
   "https://github.com/weniv/wenivlog_manual/blob/main/src/assets/favicon.svg";
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
   // 쿠키에서 access_token을 가져옵니다.
-  const cookiesStore = cookies();
+  const cookiesStore = await cookies();
   const access_token = cookiesStore.get("access_token");
   // access_token이 있으면 token을 decode합니다.
   let decodedToken = null;

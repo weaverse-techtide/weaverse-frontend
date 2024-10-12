@@ -7,7 +7,6 @@ const CourseFilter = ({ searchParams }) => {
   const courseLevel = searchParams.course_level || "";
   const search = searchParams.search || "";
   const ordering = searchParams.ordering || "";
-  const api = process.env.NEXT_PUBLIC_API_URL;
   const [selectedCategory, setSelectedCategory] = useState(category);
   const [selectedCourseLevel, setSelectedCourseLevel] = useState(courseLevel);
 

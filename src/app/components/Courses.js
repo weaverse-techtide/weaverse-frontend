@@ -86,7 +86,7 @@ export default function Courses({ initialCourses }) {
     setShowingStart(newPage * 9 - 8);
     setShowingEnd(newPage * 9 > totalCount ? totalCount : newPage * 9);
     setTotalCount(data.count);
-    setTotalPages(math.ceil(initialCourses.count / 9));
+    setTotalPages(Math.ceil(initialCourses.count / 9));
     router.push(path);
   };
 
@@ -193,31 +193,45 @@ export default function Courses({ initialCourses }) {
         {courses.map((course, index) => (
           <div className="col-sm-6 col-xl-4" key={index}>
             <div className="card shadow h-100">
-              <Image
-                src={course.thumbnail}
-                className="card-img-top"
-                alt="course image"
-                width="100"
-                height="100"
-              />
+              <a href={`courses/${course.id}`}>
+                <Image
+                  src={course.thumbnail}
+                  className="card-img-top"
+                  alt="course image"
+                  width="100"
+                  height="100"
+                />
+              </a>
               <div className="card-body pb-0">
                 <div className="d-flex justify-content-between mb-2">
                   <a
-                    href="#"
+                    href={`courses/${course.id}`}
                     className="badge bg-success bg-opacity-10 text-success"
                   >
                     {course.course_level}
                   </a>
-                  <a href="#" className="h6 fw-light mb-0">
+                  <a href={`courses/${course.id}`} className="h6 fw-light mb-0">
                     <i className="far fa-heart"></i>
                   </a>
                 </div>
                 <h5 className="card-title">
-                  <a href="#">{course.title}</a>
+                  <a href={`courses/${course.id}`}>{course.title}</a>
                 </h5>
                 <p className="mb-2 text-truncate-2">
                   {course.short_description}
                 </p>
+                <div className="d-flex align-items-center justify-content-between">
+                  <div className="avatar avatar-sm me-2">
+                    <Image
+                      src={course.author_image}
+                      className="rounded-circle"
+                      alt="instructor avatar"
+                      width="30"
+                      height="30"
+                    />
+                  </div>
+                  <span className="h6 fw-light mb-0">{course.author_name}</span>
+                </div>
               </div>
               <div className="card-footer pt-0 pb-3">
                 <hr />
