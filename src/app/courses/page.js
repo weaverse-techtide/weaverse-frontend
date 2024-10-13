@@ -10,10 +10,12 @@ export default async function CoursesPage({ searchParams }) {
   const courseLevel = query.course_level;
   const search = query.search;
   const ordering = query.ordering;
+  const api = process.env.NEXT_PUBLIC_API_URL;
 
   let initialCourses = [];
   try {
     initialCourses = await fetchCourses(
+      api,
       page,
       category,
       courseLevel,
