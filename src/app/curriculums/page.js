@@ -8,10 +8,12 @@ export default async function CurriculumsPage({ searchParams }) {
   const skillLevel = searchParams.skill_level || "";
   const search = searchParams.search || "";
   const ordering = searchParams.ordering || "";
+  const api = process.env.NEXT_PUBLIC_API_URL;
 
   let initialCurriculums = [];
   try {
     initialCurriculums = await fetchCurriculums(
+      api,
       page,
       category,
       skillLevel,

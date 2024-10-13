@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function CurriculumDetailPage() {
+export default function CurriculumDetailPage({ params }) {
   return (
     <main>
       {/* =======================

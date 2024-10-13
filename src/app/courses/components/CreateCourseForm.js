@@ -28,7 +28,7 @@ const CreateCourseForm = () => {
   const [topicVideoURL, setTopicVideoURL] = useState("");
   const [topicVideoId, setTopicVideoId] = useState("");
   const [isPremium, setIsPremium] = useState(true);
-  const api = process.env.NEXT_PUBLIC_API_URL;
+  const api = process.env.NEXT_PUBLIC_FRONTEND_URL;
 
   useEffect(() => {
     if (topicType === "video") {
@@ -68,7 +68,6 @@ const CreateCourseForm = () => {
     const formData = new FormData();
     formData.append("file", selectedImage);
 
-    const api = process.env.NEXT_PUBLIC_API_URL;
     fetch(`${api}/images/upload/`, {
       method: "POST",
       headers: {
@@ -86,7 +85,7 @@ const CreateCourseForm = () => {
       .then((data) => {
         console.log(data);
         setCourseImageId(data.id);
-        setImagePreview(data.url);
+        setImagePreview(data.image_url);
       })
       .catch((error) => {
         console.error(error);
@@ -118,7 +117,6 @@ const CreateCourseForm = () => {
     const formData = new FormData();
     formData.append("file", selectedVideo);
 
-    const api = process.env.NEXT_PUBLIC_API_URL;
     fetch(`${api}/videos/upload/`, {
       method: "POST",
       headers: {
@@ -135,7 +133,9 @@ const CreateCourseForm = () => {
         }
       })
       .then((data) => {
-        setVideoURL(data.url);
+        console.log(data);
+        setVideoURL(data.video_url);
+        setVideoId(data.id);
         setVideoPreview(data.thumbnail);
       })
       .catch((error) => {
@@ -169,7 +169,7 @@ const CreateCourseForm = () => {
         }
       })
       .then((data) => {
-        setTopicVideoURL(data.url);
+        setTopicVideoURL(data.video_url);
         setTopicVideoId(data.id);
       })
       .catch((error) => {
@@ -208,9 +208,10 @@ const CreateCourseForm = () => {
       skill_level,
       price,
       description,
+      thumbnail_id: courseImageId,
+      video_id: videoId,
       lectures: [...lecturesData],
     };
-    const api = process.env.NEXT_PUBLIC_API_URL;
     console.log(JSON.stringify(data));
     fetch(`${api}/courses/`, {
       method: "POST",

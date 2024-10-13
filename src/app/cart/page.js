@@ -1,6 +1,51 @@
 import Image from "next/image";
+import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 
-export default function CartPage() {
+export default async function CartPage() {
+  const cookie = await cookies();
+  const access_token = cookie.get("access_token");
+  if (!access_token) {
+    return notFound();
+  }
+  const initialCart = await fetch(process.env.NEXT_PUBLIC_API_URL + "/cart", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${access_token.value}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      return notFound();
+    });
+
+  function formattedPrice(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  const checkout = await fetch(process.env.NEXT_PUBLIC_API_URL + "/payments/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${access_token.value}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      return notFound();
+    });
+
   return (
     <main>
       {/* =======================
@@ -46,29 +91,6 @@ Page content START */}
             {/* Main content START */}
             <div className="col-lg-8 mb-4 mb-sm-0">
               <div className="card card-body p-4 shadow">
-                {/* Alert */}
-                <div
-                  className="alert alert-danger alert-dismissible d-flex justify-content-between align-items-center fade show py-3 pe-2"
-                  role="alert"
-                >
-                  <div>
-                    <span className="fs-5 me-1">🔥</span>
-                    These courses are at a limited discount, please checkout
-                    within
-                    <strong className="text-danger ms-1">
-                      2 days and 18 hours
-                    </strong>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-link mb-0 text-primary-hover text-end"
-                    data-bs-dismiss="alert"
-                    aria-label="Close"
-                  >
-                    <i className="bi bi-x-lg"></i>
-                  </button>
-                </div>
-
                 <div className="table-responsive border-0 rounded-3">
                   {/* Table START */}
                   <table className="table align-middle p-4 mb-0">
@@ -76,84 +98,54 @@ Page content START */}
                     {/* Table body START */}
                     <tbody className="border-top-0">
                       {/* Table item */}
-                      <tr>
-                        {/* Course item */}
-                        <td>
-                          <div className="d-lg-flex align-items-center">
-                            {/* Image */}
-                            <div className="w-100px w-md-80px mb-2 mb-md-0">
-                              <Image
-                                src="/assets/images/courses/4by3/08.jpg"
-                                width={100}
-                                height={75}
-                                alt="Course Image"
-                              />
+                      {initialCart.cart_items.map((cart_item, index) => (
+                        <tr key={index}>
+                          {/* Course item */}
+                          <td>
+                            <div className="d-lg-flex align-items-center">
+                              {/* Image */}
+                              <div className="w-100px w-md-80px mb-2 mb-md-0">
+                                <Image
+                                  src={cart_item.get_image_url || "/"}
+                                  width={100}
+                                  height={75}
+                                  alt="Course Image"
+                                />
+                              </div>
+                              {/* Title */}
+                              <h6 className="mb-0 ms-lg-3 mt-2 mt-lg-0">
+                                {cart_item.course && (
+                                  <a href={"/courses/" + cart_item.course}>
+                                    {cart_item.get_item_name}
+                                  </a>
+                                )}
+                                {cart_item.curriculum && (
+                                  <a
+                                    href={
+                                      "/curriculums/" + cart_item.curriculum
+                                    }
+                                  >
+                                    {cart_item.get_item_name}
+                                  </a>
+                                )}
+                              </h6>
                             </div>
-                            {/* Title */}
-                            <h6 className="mb-0 ms-lg-3 mt-2 mt-lg-0">
-                              <a href="#">
-                                Building Scalable APIs with GraphQL
-                              </a>
-                            </h6>
-                          </div>
-                        </td>
+                          </td>
 
-                        {/* Amount item */}
-                        <td className="text-center">
-                          <h5 className="text-success mb-0">$350</h5>
-                        </td>
-                        {/* Action item */}
-                        <td>
-                          <a
-                            href="#"
-                            className="btn btn-sm btn-success-soft px-2 me-1 mb-1 mb-md-0"
-                          >
-                            <i className="far fa-fw fa-edit"></i>
-                          </a>
-                          <button className="btn btn-sm btn-danger-soft px-2 mb-0">
-                            <i className="fas fa-fw fa-times"></i>
-                          </button>
-                        </td>
-                      </tr>
-
-                      {/* Table item */}
-                      <tr>
-                        {/* Course item */}
-                        <td>
-                          <div className="d-lg-flex align-items-center">
-                            {/* Image */}
-                            <div className="w-100px w-md-80px mb-2 mb-md-0">
-                              <Image
-                                src="/assets/images/courses/4by3/10.jpg"
-                                width={100}
-                                height={75}
-                                alt="Course Image"
-                              />
-                            </div>
-                            {/* Title */}
-                            <h6 className="mb-0 ms-lg-3 mt-2 mt-lg-0">
-                              <a href="#">Bootstrap 5 From Scratch</a>
-                            </h6>
-                          </div>
-                        </td>
-
-                        {/* Amount item */}
-                        <td className="text-center">
-                          <h5 className="text-success mb-0">$150</h5>
-                        </td>
-                        {/* Action item */}
-                        <td>
-                          <a
-                            href="#"
-                            className="btn btn-sm btn-success-soft px-2 me-1 mb-1 mb-md-0"
-                          >
-                            <i className="far fa-fw fa-edit"></i>
-                          </a>
-                          <button className="btn btn-sm btn-danger-soft px-2 mb-0">
-                            <i className="fas fa-fw fa-times"></i>
-                          </button>
-                        </td>
-                      </tr>
+                          {/* Amount item */}
+                          <td className="text-end">
+                            <h5 className="text-success mb-0">
+                              {formattedPrice(cart_item.get_price)} 원
+                            </h5>
+                          </td>
+                          {/* Action item */}
+                          <td className="text-end">
+                            <button className="btn btn-sm btn-danger-soft px-2 mb-0">
+                              <i className="fas fa-fw fa-times"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -193,21 +185,21 @@ Page content START */}
                 <ul className="list-group list-group-borderless mb-2">
                   <li className="list-group-item px-0 d-flex justify-content-between">
                     <span className="h6 fw-light mb-0">Original Price</span>
-                    <span className="h6 fw-light mb-0 fw-bold">$500</span>
-                  </li>
-                  <li className="list-group-item px-0 d-flex justify-content-between">
-                    <span className="h6 fw-light mb-0">Coupon Discount</span>
-                    <span className="text-danger">-$20</span>
+                    <span className="h6 fw-light mb-0 fw-bold">
+                      {formattedPrice(initialCart.get_total_price)}
+                    </span>
                   </li>
                   <li className="list-group-item px-0 d-flex justify-content-between">
                     <span className="h5 mb-0">Total</span>
-                    <span className="h5 mb-0">$480</span>
+                    <span className="h5 mb-0">
+                      {formattedPrice(initialCart.get_total_price)}
+                    </span>
                   </li>
                 </ul>
 
                 {/* Button */}
                 <div className="d-grid">
-                  <a href="checkout.html" className="btn btn-lg btn-success">
+                  <a href="/checkout" className="btn btn-lg btn-success">
                     Proceed to Checkout
                   </a>
                 </div>

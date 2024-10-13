@@ -32,7 +32,7 @@ export default function Curriculums({ initialCurriculums }) {
     { value: "-price", label: "낮은 가격순" },
   ];
 
-  const api = process.env.NEXT_PUBLIC_API_URL;
+  const api = process.env.NEXT_PUBLIC_FRONTEND_URL;
   const pageMaxNum = 5;
   const [totalPages, setTotalPages] = useState(
     Math.ceil(initialCurriculums.count / 9)

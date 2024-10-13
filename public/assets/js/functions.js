@@ -532,6 +532,7 @@ var e = {
             type: "video",
           },
         ]);
+
         lightBox.open();
       });
     }
@@ -1077,6 +1078,17 @@ var e = {
         modules: { toolbar: "#quilltoolbar" },
         theme: "snow",
       });
+    }
+
+    const ql2 = e.select("#staticEditor");
+    if (e.isVariableDefined(ql2)) {
+      const staticEditor = new Quill("#staticEditor", {
+        theme: "snow",
+        modules: { toolbar: false },
+        readOnly: true,
+      });
+      const content = JSON.parse(ql2.getAttribute("data-delta"));
+      staticEditor.setContents(content);
     }
   },
   // END: Quill Editor

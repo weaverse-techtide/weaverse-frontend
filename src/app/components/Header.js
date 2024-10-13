@@ -27,7 +27,7 @@ const Header = ({ decodedToken }) => {
       return;
     }
     // Fetch cart items
-    const url = process.env.NEXT_PUBLIC_API_URL + "/cart";
+    const url = process.env.NEXT_PUBLIC_FRONTEND_URL + "/cart";
     const accessToken = cookie.get("access_token");
     fetch(url, {
       headers: {
@@ -173,11 +173,8 @@ const Header = ({ decodedToken }) => {
               {/* Cart button */}
               <a
                 className="btn btn-light btn-round mb-0"
-                href="#"
+                href="/cart"
                 role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                data-bs-auto-close="outside"
               >
                 <i className="bi bi-cart3 fa-fw"></i>
               </a>
@@ -188,52 +185,6 @@ const Header = ({ decodedToken }) => {
                   <span className="visually-hidden">unread messages</span>
                 </span>
               )}
-
-              {/* Cart dropdown menu START */}
-              <div className="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0">
-                <div className="card bg-transparent">
-                  <div className="card-header bg-transparent border-bottom py-4">
-                    <h5 className="m-0">Cart items</h5>
-                  </div>
-                  <div className="card-body p-0">
-                    {/* Cart item START */}
-                    {cartItems.map((item, index) => (
-                      <div className="row p-3 g-2" key={item.id}>
-                        {/* Image */}
-                        <div className="col-3">
-                          <Image
-                            className="rounded-2"
-                            src="/assets/images/avatar/03.jpg"
-                            alt={item.item_name}
-                            width={300}
-                            height={300}
-                          />
-                        </div>
-                        <div className="col-9">
-                          {/* Title */}
-                          <div className="d-flex justify-content-between">
-                            <h6 className="m-0">{item.item_name}</h6>
-                            <a href="#" className="small text-primary-hover">
-                              <i className="bi bi-x-lg"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                    {/* Cart item END */}
-                  </div>
-                  {/* Button */}
-                  <div className="card-footer bg-transparent border-top py-3 text-center d-flex justify-content-between position-relative">
-                    <a href="/cart" className="btn btn-sm btn-light mb-0">
-                      View Cart
-                    </a>
-                    <a href="/checkout" className="btn btn-sm btn-success mb-0">
-                      Checkout
-                    </a>
-                  </div>
-                </div>
-              </div>
-              {/* Cart dropdown menu END */}
             </div>
           )}
           {/* Add to cart END */}

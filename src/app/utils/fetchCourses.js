@@ -1,6 +1,5 @@
-const api = process.env.NEXT_PUBLIC_API_URL;
-
 export async function fetchCourses(
+  api,
   page,
   category,
   courseLevel,

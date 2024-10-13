@@ -1,6 +1,10 @@
 import Image from "next/image";
+import { cookies } from "next/headers";
 
-export default function CheckoutPage() {
+export default async function CheckoutPage() {
+  const cookie = await cookies();
+  const access_token = cookie.get("access_token");
+
   return (
     <main>
       {/* =======================
@@ -49,26 +53,28 @@ Page content START */}
             {/* Main content START */}
             <div className="col-xl-8 mb-4 mb-sm-0">
               {/* Alert */}
-              <div
-                className="alert alert-danger alert-dismissible d-flex justify-content-between align-items-center fade show py-2 pe-2"
-                role="alert"
-              >
-                <div>
-                  <i className="bi bi-exclamation-octagon-fill me-2"></i>
-                  Already have an account?{" "}
-                  <a href="#" className="text-reset btn-link mb-0 fw-bold">
-                    Log in
-                  </a>
-                </div>
-                <button
-                  type="button"
-                  className="btn btn-link mb-0 text-primary-hover text-end"
-                  data-bs-dismiss="alert"
-                  aria-label="Close"
+              {!access_token && (
+                <div
+                  className="alert alert-danger alert-dismissible d-flex justify-content-between align-items-center fade show py-2 pe-2"
+                  role="alert"
                 >
-                  <i className="bi bi-x-lg"></i>
-                </button>
-              </div>
+                  <div>
+                    <i className="bi bi-exclamation-octagon-fill me-2"></i>
+                    Already have an account?
+                    <a href="#" className="text-reset btn-link mb-0 fw-bold">
+                      Log in
+                    </a>
+                  </div>
+                  <button
+                    type="button"
+                    className="btn btn-link mb-0 text-primary-hover text-end"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                  >
+                    <i className="bi bi-x-lg"></i>
+                  </button>
+                </div>
+              )}
 
               {/* Personal info START */}
               <div className="card card-body shadow p-4">

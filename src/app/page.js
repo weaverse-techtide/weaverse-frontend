@@ -2,12 +2,13 @@ import Image from "next/image";
 import { fetchCourses } from "./utils/fetchCourses";
 
 export default async function Home() {
+  const api = process.env.NEXT_PUBLIC_API_URL;
   const mainCategories = ["Python", "JavaScript", "Django", "React", "AWS"];
-  const pythonCourses = await fetchCourses(1, "Python", "", "", "");
-  const jsCourses = await fetchCourses(1, "JavaScript", "", "", "");
-  const djangoCourses = await fetchCourses(1, "Django", "", "", "");
-  const reactCourses = await fetchCourses(1, "React", "", "", "");
-  const awsCourses = await fetchCourses(1, "AWS", "", "", "");
+  const pythonCourses = await fetchCourses(api, 1, "Python", "", "", "");
+  const jsCourses = await fetchCourses(api, 1, "JavaScript", "", "", "");
+  const djangoCourses = await fetchCourses(api, 1, "Django", "", "", "");
+  const reactCourses = await fetchCourses(api, 1, "React", "", "", "");
+  const awsCourses = await fetchCourses(api, 1, "AWS", "", "", "");
 
   return (
     <main>

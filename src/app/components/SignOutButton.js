@@ -9,7 +9,7 @@ const SignOutButton = () => {
   const handleSignOut = async () => {
     try {
       // 백엔드 서버로 로그아웃 요청
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/logout/`, {
+      await fetch(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/logout/`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${Cookies.get("refresh_token")}`,

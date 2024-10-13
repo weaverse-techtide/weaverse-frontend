@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Courses({ initialCourses }) {
-  const api = process.env.NEXT_PUBLIC_API_URL;
+  const api = process.env.NEXT_PUBLIC_FRONTEND_URL;
   const pageMaxNum = 5;
   const [totalPages, setTotalPages] = useState(
     Math.ceil(initialCourses.count / 9)
