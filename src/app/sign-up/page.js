@@ -13,7 +13,7 @@ export default function SignUpPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = process.env.NEXT_PUBLIC_API_URL + "/student/register/";
+    const url = process.env.NEXT_PUBLIC_FRONTEND_URL + "/student/register/";
 
     try {
       const response = await fetch(url, {

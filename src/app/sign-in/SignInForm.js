@@ -8,7 +8,7 @@ const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const url = process.env.NEXT_PUBLIC_API_URL + "/login/";
+  const url = process.env.NEXT_PUBLIC_FRONTEND_URL + "/login/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
