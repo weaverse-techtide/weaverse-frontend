@@ -1,9 +1,11 @@
 "use client";
 
 const CheckOutButton = ({ access_token }) => {
+  const api = process.env.NEXT_PUBLIC_FRONTEND_URL;
+
   const checkout = async (e) => {
     e.preventDefault();
-    return await fetch(process.env.NEXT_PUBLIC_API_URL + "/orders/", {
+    return await fetch(`${api}/payments/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
