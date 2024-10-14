@@ -14,6 +14,7 @@ const KakaoPayButton = ({ access_token }) => {
         },
       });
 
+      console.log(res);
       if (!res.ok) {
         console.error("Error:", res);
         alert("Failed to checkout");
