@@ -1,6 +1,9 @@
 import SignInForm from "./SignInForm";
 
 export default function SignInPage() {
+  const api = process.env.NEXT_PUBLIC_API_URL;
+  const googleLoginAPI = api + "social-login/google/";
+
   return (
     <main>
       <section className="p-0 d-flex align-items-center position-relative overflow-hidden">
@@ -26,17 +29,13 @@ export default function SignInPage() {
                     </div>
 
                     {/* Social btn */}
-                    <div className="col-xxl-6 d-grid">
-                      <a href="#" className="btn bg-google mb-2 mb-xxl-0">
+                    <div className="col-xxl-12 d-grid">
+                      <a
+                        href={googleLoginAPI}
+                        className="btn bg-google mb-2 mb-xxl-0"
+                      >
                         <i className="fab fa-fw fa-google text-white me-2"></i>
                         Login with Google
-                      </a>
-                    </div>
-                    {/* Social btn */}
-                    <div className="col-xxl-6 d-grid">
-                      <a href="#" className="btn bg-facebook mb-0">
-                        <i className="fab fa-fw fa-facebook-f me-2"></i>Login
-                        with Facebook
                       </a>
                     </div>
                   </div>
