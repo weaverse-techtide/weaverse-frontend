@@ -1,8 +1,8 @@
 import SignInForm from "./SignInForm";
 
 export default function SignInPage() {
-  const api = process.env.NEXT_PUBLIC_API_URL;
-  const googleLoginAPI = api + "social-login/google/";
+  const api = process.env.NEXT_PUBLIC_FRONTEND_URL;
+  const googleLoginAPI = api + "/social-login/google/";
 
   return (
     <main>
