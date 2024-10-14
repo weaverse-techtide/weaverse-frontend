@@ -5,6 +5,8 @@ const KakaoPayButton = ({ access_token }) => {
   const checkout = async (e) => {
     e.preventDefault();
 
+    print(access_token);
+
     try {
       const res = await fetch(`${api}/payments/`, {
         method: "POST",
@@ -14,15 +16,15 @@ const KakaoPayButton = ({ access_token }) => {
         },
       });
 
+      const data = await res.json();
+      console.log(data);
+
       console.log(res);
       if (!res.ok) {
         console.error("Error:", res);
         alert("Failed to checkout");
         return;
       }
-
-      const data = await res.json();
-      console.log(data);
 
       // 리다이렉션을 위한 URL이 있다면 해당 URL로 이동
       if (data.next_redirect_pc_url) {
