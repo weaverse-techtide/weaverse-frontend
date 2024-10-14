@@ -1,32 +1,15 @@
 "use client";
 
-const KakaoPayButton = ({ access_token }) => {
+const KakaoPayButton = () => {
   const api = process.env.NEXT_PUBLIC_FRONTEND_URL;
-  const checkout = async (e) => {
-    e.preventDefault();
-
-    const res = await fetch(`${api}/payments/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
-    }).then((res) => {
-      if (res.ok) {
-        window.location.href = "/";
-      } else {
-        console.error("Error:", res);
-        alert("Failed to checkout");
-      }
-    });
-  };
+  const checkoutApi = `${api}/payments/`;
 
   return (
-    <div className="d-grid">
-      <button className="btn btn-lg btn-warning" onClick={(e) => checkout(e)}>
+    <form className="d-grid" action={checkoutApi} method="POST">
+      <button className="btn btn-lg btn-warning" type="submit">
         카카오 페이 결제 요청
       </button>
-    </div>
+    </form>
   );
 };
 
