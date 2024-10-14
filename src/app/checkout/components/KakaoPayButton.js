@@ -22,28 +22,7 @@ const KakaoPayButton = ({ access_token }) => {
 
       // 리다이렉션을 위한 URL이 있다면 해당 URL로 이동
       if (data.next_redirect_pc_url) {
-        const success = confirm("결제를 진행하시겠습니까?");
-        if (success) {
-          await fetch(data.next_redirect_pc_url, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${access_token}`,
-            },
-          })
-            .then((res) => {
-              if (res.ok) {
-                console.log("here");
-                window.location.href = "/";
-              } else {
-                throw new Error("Failed to checkout");
-              }
-            })
-            .catch((error) => {
-              console.error("Error:", error);
-              alert("Failed to checkout");
-            });
-        }
+        window.location.href = data.next_redirect_pc_url;
       } else {
         alert("No redirect URL found");
       }
