@@ -32,7 +32,7 @@ const PaymentButton = ({ result, pg_token }) => {
   };
 
   return (
-    <div className="d-grid">
+    <div className="d-grid col-3 mx-auto">
       <button className="btn btn-lg btn-success" onClick={(e) => checkout(e)}>
         카카오 페이 결제 승인
       </button>
@@ -42,3 +42,5 @@ const PaymentButton = ({ result, pg_token }) => {
     </div>
   );
 };
+
+export default PaymentButton;
