@@ -1,5 +1,5 @@
 const SignInForm = () => {
-  const api = process.env.NEXT_PUBLIC_API_URL;
+  const api = process.env.NEXT_PUBLIC_FRONTEND_URL;
   const signInApi = `${api}/login/`;
 
   return (
