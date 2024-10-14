@@ -16,8 +16,14 @@ const KakaoPayButton = ({ access_token }) => {
       if (!res.ok) {
         console.error("Error:", res);
         alert("Failed to checkout");
-        return;
       }
+
+      await fetch(`${api}/payments/`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
 
       const data = await res.json();
 
