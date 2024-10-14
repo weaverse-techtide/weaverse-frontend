@@ -85,7 +85,7 @@ const CreateCourseForm = () => {
       .then((data) => {
         console.log(data);
         setCourseImageId(data.id);
-        setImagePreview(data.image_url);
+        setImagePreview(data.url);
       })
       .catch((error) => {
         console.error(error);
@@ -134,7 +134,7 @@ const CreateCourseForm = () => {
       })
       .then((data) => {
         console.log(data);
-        setVideoURL(data.video_url);
+        setVideoURL(data.url);
         setVideoId(data.id);
         setVideoPreview(data.thumbnail);
       })
@@ -169,7 +169,7 @@ const CreateCourseForm = () => {
         }
       })
       .then((data) => {
-        setTopicVideoURL(data.video_url);
+        setTopicVideoURL(data.url);
         setTopicVideoId(data.id);
       })
       .catch((error) => {
@@ -837,17 +837,19 @@ Steps START */}
                                 height={100}
                               />
                             )}
-                            <div className="position-absolute top-50 start-50 translate-middle">
-                              {/* Video link */}
-                              <a
-                                href={videoURL || "#"}
-                                className="btn btn-lg text-danger btn-round btn-white-shadow mb-0"
-                                data-glightbox
-                                data-gallery="video-tour"
-                              >
-                                <i className="fas fa-play"></i>
-                              </a>
-                            </div>
+                            {videoURL && (
+                              <div className="position-absolute top-50 start-50 translate-middle">
+                                {/* Video link */}
+                                <a
+                                  href={videoURL}
+                                  className="btn btn-lg text-danger btn-round btn-white-shadow mb-0"
+                                  data-glightbox
+                                  data-gallery="video-tour"
+                                >
+                                  <i className="fas fa-play"></i>
+                                </a>
+                              </div>
+                            )}
                           </div>
                         </div>
                         {/* Upload video END */}

@@ -13,7 +13,7 @@ const KakaoPayButton = ({ access_token }) => {
       },
     }).then((res) => {
       if (res.ok) {
-        window.location.href = "/checkout";
+        window.location.href = "/";
       } else {
         console.error("Error:", res);
         alert("Failed to checkout");

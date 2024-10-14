@@ -1,10 +1,14 @@
 import Image from "next/image";
 import { cookies } from "next/headers";
 import KakaoPayButton from "./components/KakaoPayButton";
+import { notFound, redirect } from "next/navigation";
 
 export default async function CheckoutPage() {
   const cookie = await cookies();
   const access_token = cookie.get("access_token");
+  if (!access_token) {
+    redirect("/login");
+  }
 
   const initialOrder = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/orders/",
@@ -116,7 +120,7 @@ Page content START */}
                             {/* Image */}
                             <div className="w-100px w-md-80px mb-2 mb-md-0">
                               <Image
-                                src={order_item.get_image_url || "/"}
+                                src={order_item.thumbnail || "/"}
                                 width={100}
                                 height={75}
                                 alt="Course Image"
