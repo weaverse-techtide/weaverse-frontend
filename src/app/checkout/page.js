@@ -184,7 +184,7 @@ Page content START */}
                       </li>
                     </ul>
                     {/* Button */}
-                    <KakaoPayButton />
+                    <KakaoPayButton access_token={access_token} />
                     {/* Content */}
                     <p className="small mb-0 mt-2 text-center">
                       By completing your purchase, you agree to these
