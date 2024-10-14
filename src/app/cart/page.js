@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
+import CheckOutButton from "./components/CheckOutButton";
+import { notFound, redirect } from "next/navigation";
 
 export default async function CartPage() {
   const cookie = await cookies();
   const access_token = cookie.get("access_token");
   if (!access_token) {
-    return notFound();
+    redirect("/login");
   }
   const initialCart = await fetch(process.env.NEXT_PUBLIC_API_URL + "/cart", {
     method: "GET",
@@ -22,29 +23,12 @@ export default async function CartPage() {
     })
     .catch((error) => {
       console.error("Error:", error);
-      return notFound();
+      notFound();
     });
 
   function formattedPrice(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
-
-  const checkout = await fetch(process.env.NEXT_PUBLIC_API_URL + "/payments/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${access_token.value}`,
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      return data;
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      return notFound();
-    });
 
   return (
     <main>
@@ -198,11 +182,7 @@ Page content START */}
                 </ul>
 
                 {/* Button */}
-                <div className="d-grid">
-                  <a href="/checkout" className="btn btn-lg btn-success">
-                    Proceed to Checkout
-                  </a>
-                </div>
+                <CheckOutButton access_token={access_token.value} />
 
                 {/* Content */}
                 <p className="small mb-0 mt-2 text-center">

@@ -4,7 +4,7 @@ import cookies from "js-cookie";
 
 const AddToCart = ({ id }) => {
   const addToCart = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/cart`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/cart/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cookies } from "next/headers";
 
 export default function StudentDashboardPage() {
   return (

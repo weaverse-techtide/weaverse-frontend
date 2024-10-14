@@ -1,48 +1,9 @@
-"use client";
-
-import { useState } from "react";
-import { jwtDecode } from "jwt-decode";
-import Cookies from "js-cookie";
-
 const SignInForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const url = process.env.NEXT_PUBLIC_FRONTEND_URL + "/login/";
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        // 로그인 성공 시 AccessToken을 쿠키에 저장
-        const decodedToken = jwtDecode(data.access_token);
-        const expires = decodedToken.exp - decodedToken.iat;
-        Cookies.set("access_token", data.access_token, {
-          expires: expires,
-        });
-        // 홈으로 이동
-        window.location.href = "/";
-      } else {
-        // 에러 메시지를 설정
-        setError(data.message || "로그인에 실패했습니다.");
-      }
-    } catch (err) {
-      // 서버 오류 처리
-      setError("서버 오류가 발생했습니다. 다시 시도해주세요.");
-    }
-  };
+  const api = process.env.NEXT_PUBLIC_API_URL;
+  const signInApi = `${api}/login/`;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form action={signInApi} method="post">
       {/* Email */}
       <div className="mb-4">
         <label htmlFor="exampleInputEmail1" className="form-label">
@@ -57,8 +18,7 @@ const SignInForm = () => {
             className="form-control border-0 bg-light rounded-end ps-1"
             placeholder="E-mail"
             id="exampleInputEmail1"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
             required
           />
         </div>
@@ -77,9 +37,8 @@ const SignInForm = () => {
             className="form-control border-0 bg-light rounded-end ps-1"
             placeholder="password"
             id="inputPassword5"
-            value={password}
+            name="password"
             autoComplete="current-password"
-            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
@@ -107,11 +66,6 @@ const SignInForm = () => {
       </div>
       {/* Button */}
       {/* Error message */}
-      {error && (
-        <div className="alert alert-danger" role="alert">
-          {error}
-        </div>
-      )}
       {/* Submit */}
       <div className="align-items-center mt-0">
         <div className="d-grid">

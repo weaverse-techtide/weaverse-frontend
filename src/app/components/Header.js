@@ -27,7 +27,7 @@ const Header = ({ decodedToken }) => {
       return;
     }
     // Fetch cart items
-    const url = process.env.NEXT_PUBLIC_FRONTEND_URL + "/cart";
+    const url = process.env.NEXT_PUBLIC_FRONTEND_URL + "/cart/";
     const accessToken = cookie.get("access_token");
     fetch(url, {
       headers: {
@@ -36,9 +36,6 @@ const Header = ({ decodedToken }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.detail) {
-          return;
-        }
         setCartItems(data.cart_items);
       })
       .catch((error) => {

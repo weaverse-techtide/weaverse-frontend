@@ -21,6 +21,7 @@ export default async function RootLayout({ children }) {
   // 쿠키에서 access_token을 가져옵니다.
   const cookiesStore = await cookies();
   const access_token = cookiesStore.get("access_token");
+  const refresh_token = cookiesStore.get("refresh_token");
   // access_token이 있으면 token을 decode합니다.
   let decodedToken = null;
   if (access_token) {
