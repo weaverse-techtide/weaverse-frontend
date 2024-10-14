@@ -5,7 +5,7 @@ const CheckOutButton = ({ access_token }) => {
 
   const checkout = async (e) => {
     e.preventDefault();
-    return await fetch(`${api}/payments/`, {
+    return await fetch(`${api}/orders/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
